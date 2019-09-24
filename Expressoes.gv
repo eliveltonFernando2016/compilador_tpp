@@ -1,0 +1,14 @@
+digraph G {
+	programa0 -> lista_declaracoes11
+	lista_declaracoes11 -> declaracao2
+	declaracao2 -> inicializacao_variaveis3
+	inicializacao_variaveis3 -> atribuicao4
+	atribuicao4 -> var5
+	atribuicao4 -> expressao5
+	expressao5 -> expressao_simples6
+	expressao_simples6 -> expressao_aditiva7
+	expressao_aditiva7 -> expressao_multiplicativa8
+	expressao_multiplicativa8 -> expressao_unaria9
+	expressao_unaria9 -> fator110
+	fator110 -> numero11
+}
