@@ -8,24 +8,24 @@ from graphviz import Digraph
 from sys import argv, exit
 from Parser import Parser
 
+#Imprime no terminal
 def imprime_arvore(raiz, level="-"):
     if raiz != None and raiz.child != None:
         print(level + "Tipo: " + raiz.type + " Valor: " + raiz.value)
         for son in raiz.child:
             imprime_arvore(son, level + "-")
 
-def printTreeText(node, w, i):
+#Imprime no gráfico
+def printTreeText(node, w):
     if node != None and node.child != None:
-        value1 = node.type + str(i)
-        i += 1
         for son in node.child:
-            w.edge(value1, str(son) + str(i))
-            printTreeText(son, w, i)
+            w.edge(node.type, str(son))
+            printTreeText(son, w)
 
 if __name__ == '__main__':
     f = open(argv[1])
     a = Parser(f.read())
     imprime_arvore(a.ast)
     w = Digraph('G', filename='./Expressoes.gv')
-    printTreeText(a.ast, w, i = 0)
+    printTreeText(a.ast, w)
     w.view()
