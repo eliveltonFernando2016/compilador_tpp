@@ -15,17 +15,18 @@ def imprime_arvore(raiz, level="-"):
         for son in raiz.child:
             imprime_arvore(son, level + "-")
 
-#Imprime no gráfico
-def printTreeText(node, w):
+def printTreeText(node, w, i):
     if node != None and node.child != None:
+        value1 = node.type + str(i)
+        i += 1
         for son in node.child:
-            w.edge(node.type, str(son))
-            printTreeText(son, w)
+            w.edge(value1, str(son) + str(i))
+            printTreeText(son, w, i)
 
 if __name__ == '__main__':
     f = open(argv[1])
     a = Parser(f.read())
     imprime_arvore(a.ast)
-    w = Digraph('G', filename='./Expressoes.gv')
-    printTreeText(a.ast, w)
+    w = Digraph('G', filename='./Expressoes')
+    printTreeText(a.ast, w, i=0)
     w.view()
